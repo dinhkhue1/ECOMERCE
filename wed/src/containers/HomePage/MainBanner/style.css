@@ -1,0 +1,28 @@
+.banner {
+  min-height: 30vh;
+  position: relative;
+  background-image: url("../../../images/home_banner.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  object-fit: contain;
+  min-height: 80vh;
+}
+.hero {
+  padding: 0 2rem;
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(0, 15%);
+  transform: translate(-20%, 15%);
+}
+.title {
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
+.btn {
+  color: red;
+  font-size: 25px;
+}

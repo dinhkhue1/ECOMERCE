@@ -1,0 +1,63 @@
+import React, { useState } from "react";
+import "./style.css";
+import { generatePublicUrl } from "../../../urlConfig";
+/**
+ * @author
+ * @function CartItem
+ **/
+
+const CartItem = (props) => {
+  const [qty, setQty] = useState(props.cartItem.qty);
+
+  const { _id, name, price, img } = props.cartItem;
+
+  const onQuantityIncrement = () => {
+    setQty(qty + 1);
+    props.onQuantityInc(_id, qty + 1);
+  };
+
+  const onQuantityDecrement = () => {
+    if (qty <= 1) return;
+    setQty(qty - 1);
+    props.onQuantityDec(_id, qty - 1);
+  };
+
+  return (
+    <div className="cartItemContainer">
+      <div className="flexRow">
+        <div className="cartProImgContainer">
+          <img src={generatePublicUrl(img)} alt={""} />
+        </div>
+        <div className="cartItemDetails">
+          <div>
+            <p>{name}</p>
+            <p>Giá tiền: {price}</p>
+          </div>
+          <div>Giao hàng trong 3-5 ngày</div>
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          margin: "5px 0",
+        }}
+      >
+        {/* quantity control */}
+        <div className="quantityControl">
+          <button onClick={onQuantityDecrement}>-</button>
+          <input value={qty} readOnly />
+          <button onClick={onQuantityIncrement}>+</button>
+        </div>
+        <button className="cartActionBtn">voucher</button>
+        <button
+          className="cartActionBtn"
+          onClick={() => props.onRemoveCartItem(_id)}
+        >
+          Xóa
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default CartItem;
